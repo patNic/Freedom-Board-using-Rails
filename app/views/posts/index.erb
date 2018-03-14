@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='UTF-8' />
+    <title>Suffragist</title>
+    
+	<link rel="stylesheet" type="text/css" href="/css/main.css">
+	<link href="/css/bootstrap.css" rel = "stylesheet"/>
+	<link href="/css/bootstrap-responsive.css" rel = "stylesheet"/>
+	
+  </head>
+  <body class='container'>
+	<div class = 'row text-center'>
+		<h1 class = "freedom" >Freedom Board</h1>
+		
+		<div class = "col-sm-8">
+			<%= form_for :post, url: posts_path do |f| %>
+				<div class = "form-group">
+					<%= f.text_area :post_content, :class => "upper-textarea", :rows=>3,:placeholder=>"Please type message"%>
+				</div>
+				<div class = "form-group">
+					<%=f.text_area :sender, :class => "lower-textarea", :rows=>1, :placeholder => "Anonymous"%>
+					<%= f.submit "Ipahayag", :class=> "btn btn-primary" %>
+				</div>
+			<%end%>
+			
+			<div class= "panel panel-primary">
+				<div class = "form-group">
+					<form action = "/findpost" method = "post">
+						<textarea class = "form-control" rows="1" name = "txt3" placeholder="Hanapin ang post"></textarea>
+						<button class= "btn btn-primary" type = submit>Hanapin</button>
+					</form>
+					<form action = "/allposts" method = "post">
+						<button class= "btn btn-primary">Lahat ng post</button>
+					</form>
+				</div>
+				<div class = "con">
+				<section>
+					<div class="panel-body">
+						<% @posts.reverse.each do |post|%>
+							<div class = "within">
+								<div class = "pull-left"><label class = "lbl"><%=post.sender%> </label></div>
+								<div class = "pull-right"><label class = "lbl"><%=post.created_at%> </label></div>
+								<br><p><%= post.post_content%> </p>
+							</div>
+						<%end%>
+					</div>
+				</section>
+				
+			</div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>
