@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset='UTF-8' />
-    <title>Suffragist</title>
+    <title>Freedom Board</title>
     
 	<link rel="stylesheet" type="text/css" href="/css/main.css">
 	<link href="/css/bootstrap.css" rel = "stylesheet"/>
@@ -11,28 +11,33 @@
   </head>
   <body class='container'>
 	<div class = 'row text-center'>
-		<h1 class = "freedom" >Freedom Board</h1>
+		<h1 class = "freedom" >Pisara ng Kalayaan</h1>
 		
 		<div class = "col-sm-8">
 			<%= form_for :post, url: posts_path do |f| %>
 				<div class = "form-group">
-					<%= f.text_area :post_content, :class => "upper-textarea", :rows=>3,:placeholder=>"Please type message"%>
+					<%= f.text_area :post_content, :class => "upper-textarea", :rows=>3,:placeholder=>"Maaaring magsulat ng mensahe"%>
 				</div>
 				<div class = "form-group">
-					<%=f.text_area :sender, :class => "lower-textarea", :rows=>1, :placeholder => "Anonymous"%>
+					<%=f.text_area :sender, :class => "lower-textarea", :rows=>1, :placeholder => "Walang lagda"%>
 					<%= f.submit "Ipahayag", :class=> "btn btn-primary" %>
 				</div>
 			<%end%>
 			
 			<div class= "panel panel-primary">
 				<div class = "form-group">
-					<form action = "/findpost" method = "post">
-						<textarea class = "form-control" rows="1" name = "txt3" placeholder="Hanapin ang post"></textarea>
-						<button class= "btn btn-primary" type = submit>Hanapin</button>
-					</form>
-					<form action = "/allposts" method = "post">
-						<button class= "btn btn-primary">Lahat ng post</button>
-					</form>
+					
+					<%= form_for :findpost, url: "/findpost" do |f| %>
+						<%= f.text_area :to_find, :class => "form-control", :rows=>1%>
+						<%= f.submit "Hanapin", :class => "btn btn-primary"%>
+					<%end%>
+					
+					<%= form_for :allpost, url: "/allposts" do |f| %>
+						
+						<%= f.submit "Lahat ng posts", :class => "btn btn-primary"%>
+					<%end%>
+					
+					
 				</div>
 				<div class = "con">
 				<section>

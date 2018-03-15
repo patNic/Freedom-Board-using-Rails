@@ -4,4 +4,8 @@ Rails.application.routes.draw do
   resources :posts
   
   post '/' => 'posts#create'
+  get '/findpost' => 'posts#find_post'
+  post '/findpost' => 'posts#find_post'
+  post '/allposts' => 'posts#all_posts'
+  
 end
